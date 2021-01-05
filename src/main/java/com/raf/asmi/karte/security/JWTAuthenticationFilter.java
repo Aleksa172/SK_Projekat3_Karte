@@ -31,6 +31,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			throws AuthenticationException {
 		try {
 
+			System.out.println("Auth attempted");
 			// Dobiti podatke uvek - nasi su vestacki
 			//Login_Form user = new ObjectMapper().readValue(req.getInputStream(), Login_Form.class);
 
@@ -58,7 +59,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 				.sign(HMAC512(SecurityConstants.SECRET.getBytes()));
 		
 		
-
+		System.out.println("Succes!");
 		res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
 	}
 }

@@ -1,6 +1,7 @@
 package com.raf.asmi.karte;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -23,7 +24,7 @@ public class GreetingController {
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 	@Autowired
-	private KartaRepository letRepository;
+	private KartaRepository kartaRepository;
 	@Autowired
 	private JmsTemplate jmsTemplate;
 	@Autowired
@@ -50,13 +51,13 @@ public class GreetingController {
 		avionRepository.save(a);
 		*/
 		
-		Optional<Karta> lTemp = letRepository.findById(1);
-		Karta l = lTemp.get();
+		List<Karta> karte = kartaRepository.vratiKarteZaLet(2);
+		
 		//Optional<Avion> aTemp = avionRepository.findById(3);
 		//Avion a = aTemp.get();
 		//l.setAvion(a);
 		//letRepository.save(l);
-		return "";
+		return karte.toString();
 	}
 	
 	@GetMapping("/test2")

@@ -22,4 +22,20 @@ public class KartaRepositoryImpl extends SimpleJpaRepository<Karta, Integer> imp
 		this.em = em;
 	}
 
+	@Override
+	public List<Karta> vratiKarteZaKorisnika(Integer usr_id) {
+		Query q = em.createQuery("SELECT k FROM Karta k WHERE k.korisnikId=:korisnikId ORDER BY k.datumKupovine DESC");
+		q.setParameter("korisnikId", usr_id);
+		
+		return q.getResultList();
+	}
+
+	@Override
+	public List<Karta> vratiKarteZaLet(Integer let_id) {
+		Query q = em.createQuery("SELECT k FROM Karta k WHERE k.letId=:let_id");
+		q.setParameter("let_id", let_id);
+		
+		return q.getResultList();
+	}
+
 }
