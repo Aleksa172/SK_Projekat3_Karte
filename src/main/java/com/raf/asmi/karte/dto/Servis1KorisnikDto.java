@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 public class Servis1KorisnikDto {
 	
-	public static final String RANG_ZLATO = "zlato";
-	public static final String RANG_SREBRO = "srebro";
-	public static final String RANG_BRONZA = "bronza";
+	public static final String RANG_ZLATO = "Zlato";
+	public static final String RANG_SREBRO = "Srebro";
+	public static final String RANG_BRONZA = "Bronza";
 
 	
 	private Integer id;
@@ -24,6 +24,17 @@ public class Servis1KorisnikDto {
 		this.brojPasosa = (String) httpResponse.get("brojPasosa");
 		this.email = (String) httpResponse.get("email");
 		this.rang = (String) httpResponse.get("rang");
+	}
+	
+	
+	public Servis1KorisnikDto(String s1Response) {
+		String[] parts = s1Response.split("/");
+		this.id = 42; // Ovo izmeniti kada servis1 vrati id korisnika
+		this.ime = parts[0];
+		this.prezime = parts[1];
+		this.email = parts[2];
+		this.brojPasosa = parts[3]+"";
+		this.rang = parts[4];
 	}
 	
 	public Integer getId() {

@@ -23,9 +23,9 @@ public class KartaRepositoryImpl extends SimpleJpaRepository<Karta, Integer> imp
 	}
 
 	@Override
-	public List<Karta> vratiKarteZaKorisnika(Integer usr_id) {
-		Query q = em.createQuery("SELECT k FROM Karta k WHERE k.korisnikId=:korisnikId ORDER BY k.datumKupovine DESC");
-		q.setParameter("korisnikId", usr_id);
+	public List<Karta> vratiKarteZaKorisnika(String usr_email) {
+		Query q = em.createQuery("SELECT k FROM Karta k WHERE k.korisnikEmail=:korisnikEmail ORDER BY k.datumKupovine DESC");
+		q.setParameter("korisnikEmail", usr_email);
 		
 		return q.getResultList();
 	}

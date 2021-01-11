@@ -20,12 +20,9 @@ public class HttpCommunicationUtils {
 		return response;
 	}
 
-	public static ResponseEntity<Integer> sendPost(String url, Object body) {
+	public static ResponseEntity<Integer> sendPost(String url, HttpEntity<String> entity ) {
 
 		RestTemplate restTemplate = new RestTemplate();
-		HttpHeaders headers = new HttpHeaders();
-
-		HttpEntity<Object> entity = new HttpEntity<Object>(body, headers);
 
 		ResponseEntity<Integer> response = restTemplate.exchange(url, HttpMethod.POST, entity, Integer.class);
 
