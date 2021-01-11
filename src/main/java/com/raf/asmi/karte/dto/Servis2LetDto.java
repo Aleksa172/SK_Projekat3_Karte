@@ -9,7 +9,7 @@ public class Servis2LetDto {
 	private String status;
 	private String pocetnaDestinacija;
 	private String krajnjaDestinacija;
-	private short trajanje;
+	private short duzina;
 	private Double cena;
 	private Integer letId;
 	private Integer avionId;
@@ -20,7 +20,7 @@ public class Servis2LetDto {
 		this.status = (String) httpResponse.get("status");
 		this.pocetnaDestinacija = (String) httpResponse.get("pocetnaDestinacija");
 		this.krajnjaDestinacija = (String) httpResponse.get("krajnjaDestinacija");
-		this.trajanje = ((Integer) httpResponse.get("trajanjeLeta")).shortValue();
+		this.duzina = ((Integer) httpResponse.get("duzinaLeta")).shortValue();
 		this.cena = (Double) httpResponse.get("cena");
 		this.letId = (Integer) httpResponse.get("id");
 		
@@ -57,8 +57,8 @@ public class Servis2LetDto {
 
 
 
-	public short getTrajanje() {
-		return trajanje;
+	public short getDuzina() {
+		return duzina;
 	}
 
 

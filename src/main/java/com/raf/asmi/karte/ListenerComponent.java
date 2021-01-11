@@ -3,6 +3,7 @@ package com.raf.asmi.karte;
 import java.util.List;
 import java.util.Properties;
 
+import javax.jms.Queue;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -18,6 +19,7 @@ import javax.mail.internet.MimeMultipart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 import com.raf.asmi.karte.entiteti.Karta;
@@ -29,6 +31,12 @@ public class ListenerComponent {
 	
 	@Autowired
 	private KartaRepository kartaRepository;
+	
+
+	@Autowired
+	private JmsTemplate jmsTemplate;
+	@Autowired
+	private Queue obrisanLetS1Queue;
 
 	@JmsListener(destination="test.queue")
 	public void consume(String message){
@@ -44,6 +52,9 @@ public class ListenerComponent {
 		for(Karta k:pogodjeneKarte) {
 			k.setStatus(KartaStatus.CANCELLED);
 			kartaRepository.save(k);
+			System.out.println("SERVIS 3: Poslata poruka S1 i proslednje email");
+			System.out.println("PORUKA KA S1: "+k.getKorisnik_email()+"/"+k.getDuzinaLeta());
+			jmsTemplate.convertAndSend(obrisanLetS1Queue, k.getKorisnik_email()+"/"+k.getDuzinaLeta());
 			try {
 				sendCancellationEmail(k.getKorisnik_email(), k);
 			} catch (AddressException e) {

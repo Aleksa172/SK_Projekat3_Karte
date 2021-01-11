@@ -150,7 +150,7 @@ public class KartaController {
 				letData.getAvionNaziv(), 
 				letData.getPocetnaDestinacija(), 
 				letData.getKrajnjaDestinacija(), 
-				letData.getTrajanje(), 
+				letData.getDuzina(), 
 				letData.getCena(),
 				korisnikData.getIme(), 
 				korisnikData.getPrezime(),

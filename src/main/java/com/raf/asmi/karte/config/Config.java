@@ -24,6 +24,11 @@ public class Config {
 	public Queue obrisanLetQueue() {
 		return new ActiveMQQueue("obrisanlet.queue");
 	}
+	
+	@Bean
+	public Queue obrisanLetS1Queue() {
+		return new ActiveMQQueue("obrisanlets1.queue");
+	}
 
 	@Bean
 	public ActiveMQConnectionFactory activeMQConnectionFactory() {

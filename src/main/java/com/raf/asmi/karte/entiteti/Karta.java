@@ -28,7 +28,7 @@ public class Karta {
 	private String avion_ime;
 	private String pocetnaDestinacija;
 	private String krajnjaDestinacija;
-	private short trajanjeLeta; // u minutama
+	private short duzinaLeta; // u km
 	private double cena; // u evrima
 	@Enumerated(EnumType.STRING) // Stanje leta - OPEN, CANCELLED
 	private KartaStatus status;
@@ -48,7 +48,7 @@ public class Karta {
 				String avion_ime,
 				String pocetnaDestinacija,
 				String krajnjaDestinacija,
-				short trajanjeLeta,
+				short duzinaLeta,
 				double cena,
 				String korisnik_ime,
 				String korisnik_prezime,
@@ -59,7 +59,7 @@ public class Karta {
 		this.avion_ime=avion_ime;
 		this.pocetnaDestinacija=pocetnaDestinacija;
 		this.krajnjaDestinacija=krajnjaDestinacija;
-		this.trajanjeLeta=trajanjeLeta;
+		this.duzinaLeta=duzinaLeta;
 		this.cena=cena;
 		this.korisnik_ime=korisnik_ime;
 		this.korisnik_prezime=korisnik_prezime;
@@ -86,11 +86,11 @@ public class Karta {
 	public void setKrajnjaDestinacija(String krajnjaDestinacija) {
 		this.krajnjaDestinacija = krajnjaDestinacija;
 	}
-	public short getTrajanjeLeta() {
-		return trajanjeLeta;
+	public short getDuzinaLeta() {
+		return duzinaLeta;
 	}
-	public void setTrajanjeLeta(short trajanjeLeta) {
-		this.trajanjeLeta = trajanjeLeta;
+	public void setDuzinaLeta(short duzinaLeta) {
+		this.duzinaLeta = duzinaLeta;
 	}
 	public double getCena() {
 		return cena;
