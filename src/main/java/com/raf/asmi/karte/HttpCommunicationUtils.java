@@ -28,5 +28,14 @@ public class HttpCommunicationUtils {
 
 		return response;
 	}
+	
+	public static ResponseEntity<String> sendPostExpectString(String url, HttpEntity<String> entity ) {
+
+		RestTemplate restTemplate = new RestTemplate();
+
+		ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+		return response;
+	}
 
 }

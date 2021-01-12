@@ -25,6 +25,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.raf.asmi.karte.HttpCommunicationUtils;
 import com.raf.asmi.karte.dto.KupovinaKarteResp;
+import com.raf.asmi.karte.dto.S1ChangeForm;
 import com.raf.asmi.karte.dto.Servis1KorisnikDto;
 import com.raf.asmi.karte.dto.Servis2LetDto;
 import com.raf.asmi.karte.entiteti.Karta;
@@ -175,6 +177,17 @@ public class KartaController {
 				korisnikData.getBrojPasosa());
 		
 		kartaRepository.save(k);
+		// Dodaj milje
+		// Neophodno je spakovati JSON objekat koji odgovara S1 ChangeForm
+		HttpHeaders headers2 = new HttpHeaders();
+		headers2.set("Authorization",token);
+		headers2.setContentType(MediaType.APPLICATION_JSON);
+		
+		System.out.println(new S1ChangeForm(letData.getDuzina()).toJson());
+		
+		HttpEntity<String> entity2 = new HttpEntity<>(new S1ChangeForm(letData.getDuzina()).toJson(), headers2);
+		ResponseEntity<String> response2 = HttpCommunicationUtils.sendPostExpectString("http://localhost:8081/addMile", entity2);
+		
 		
 		return new KupovinaKarteResp("ok", stringPopust, finalCena, preostalo);
 	}
